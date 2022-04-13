@@ -4,11 +4,22 @@
 
 using Wordle;
 
-var wordProvider = new WordProvider();
-var allWords = wordProvider.GetWords();
 
+var controller = new WordleController();
 
 
 Console.Write("Enter a word: ");
-var GuessWord = Console.ReadLine();
-Console.WriteLine("You have guessed " + GuessWord);
+var guessWord = Console.ReadLine();
+var isAWord = controller.IsAWord(guessWord);
+Console.WriteLine("You have guessed " + guessWord);
+
+if (isAWord == true)
+{
+    Console.WriteLine("Well done sir");
+}
+else
+{
+    Console.WriteLine("Unlucky!");
+}
+
+Console.ReadLine();
