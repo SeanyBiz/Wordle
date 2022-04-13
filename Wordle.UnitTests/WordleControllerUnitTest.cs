@@ -44,5 +44,20 @@ namespace Wordle.UnitTests
             //assert
             Assert.True(actual);
         }
+
+        [Fact]
+        public void WhenIProvideAValidNonFiveLetterWordReturnFalse()
+        {
+            //setup
+            var controller = new WordleController();
+
+            //act
+            var actual = controller.IsAWord("spaceship");
+
+            //assert
+            Assert.False(actual);
+        }
+
     }
+
 }
