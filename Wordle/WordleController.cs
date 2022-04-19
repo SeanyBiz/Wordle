@@ -37,6 +37,9 @@
             return false;
         }
 
-
+        public bool IsGuessEqualToWordOfTheDay(string guess, string wordOfTheDay)
+        {
+            return (guess.ToLower() == wordOfTheDay.ToLower());
+        }
     }
 }

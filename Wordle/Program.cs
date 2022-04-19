@@ -14,13 +14,18 @@ var guessWord = Console.ReadLine();
 var isAWord = controller.IsAWord(guessWord);
 Console.WriteLine("You have guessed " + guessWord);
 
-if (isAWord == true)
+if (isAWord == false)
 {
-    Console.WriteLine("Well done sir");
+    Console.WriteLine("That is not a valid word");
+}
+
+if (controller.IsGuessEqualToWordOfTheDay(guessWord, wordOfTheDay))
+{
+    Console.WriteLine("Winner Winner Chicken Dinner!!");
 }
 else
 {
-    Console.WriteLine("Unlucky!");
+    Console.WriteLine("Wrong answer, you failure!");
 }
 
 Console.ReadLine();

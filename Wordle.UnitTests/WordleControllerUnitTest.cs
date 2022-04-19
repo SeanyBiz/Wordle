@@ -73,5 +73,32 @@ namespace Wordle.UnitTests
             //assert
             Assert.Equal("crows", actual);
         }
+        [Fact]
+        public void When_IsGuessEqualToWordOfTheDay_Is_Called_With_Matching_Strings_Return_True()
+        {
+            //setup
+            var controller = new WordleController();
+
+
+            //act
+            var actual = controller.IsGuessEqualToWordOfTheDay("crows", "CROws");
+
+            //assert
+            Assert.True(actual);
+        }
+        [Fact]
+        public void When_IsGuessEqualToWordOfTheDay_Is_Called_With_NonMatching_Strings_Return_False()
+        {
+            //setup
+            var controller = new WordleController();
+
+
+            //act
+            var actual = controller.IsGuessEqualToWordOfTheDay("crows", "bears");
+
+            //assert
+            Assert.False(actual);
+        }
     }
+
 }
