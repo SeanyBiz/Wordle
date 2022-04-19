@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 
 namespace Wordle.UnitTests
@@ -57,7 +58,20 @@ namespace Wordle.UnitTests
             //assert
             Assert.False(actual);
         }
+        [Fact]
+        public void GetWordOfTheDayShouldReturnAFiveLetterWord()
+        {
+            //setup
+            var controller = new WordleController();
+            var words = new List<string>();
+            words.Add("crows");
 
+
+            //act
+            var actual = controller.GetWordOfTheDay(words);
+
+            //assert
+            Assert.Equal("crows", actual);
+        }
     }
-
 }

@@ -6,7 +6,8 @@ using Wordle;
 
 
 var controller = new WordleController();
-
+var wordOfTheDay = controller._wordOfTheDay;
+Console.WriteLine("Your word of the day is " + wordOfTheDay);
 
 Console.Write("Enter a word: ");
 var guessWord = Console.ReadLine();
