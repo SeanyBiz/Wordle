@@ -5,27 +5,59 @@
 using Wordle;
 
 
+
+int guessCount = 0;
+int guessLimit = 4;
+bool outOfGuesses = false;
+bool hasGuessedCorrectly = false;
+
 var controller = new WordleController();
 var wordOfTheDay = controller._wordOfTheDay;
 Console.WriteLine("Your word of the day is " + wordOfTheDay);
 
-Console.Write("Enter a word: ");
-var guessWord = Console.ReadLine();
-var isAWord = controller.IsAWord(guessWord);
-Console.WriteLine("You have guessed " + guessWord);
 
-if (isAWord == false)
+
+while (outOfGuesses == false && hasGuessedCorrectly == false)
 {
-    Console.WriteLine("That is not a valid word");
+    Console.Write("Enter a word: ");
+    var guessWord = Console.ReadLine();
+
+    var isAWord = controller.IsAWord(guessWord);
+    Console.WriteLine("You have guessed " + guessWord);
+
+
+
+    if (isAWord == false)
+    {
+        Console.WriteLine("That is not a valid word");
+    }
+    else
+    {
+        guessCount++;
+        outOfGuesses = (guessCount >= guessLimit);
+
+    }
+
+
+
+    if (controller.IsGuessEqualToWordOfTheDay(guessWord, wordOfTheDay))
+    {
+        Console.WriteLine("Winner Winner Chicken Dinner!!");
+        hasGuessedCorrectly = true;
+    }
+    else
+    {
+        Console.WriteLine("You have " + (guessLimit - guessCount) + " guesses remaining!");
+    }
+
 }
 
-if (controller.IsGuessEqualToWordOfTheDay(guessWord, wordOfTheDay))
+
+if (hasGuessedCorrectly == false)
 {
-    Console.WriteLine("Winner Winner Chicken Dinner!!");
-}
-else
-{
-    Console.WriteLine("Wrong answer, you failure!");
+
+    Console.Write("Game over, out of guesses, the word of the day was " + wordOfTheDay);
+
 }
 
 Console.ReadLine();
