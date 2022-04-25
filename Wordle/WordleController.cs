@@ -4,7 +4,12 @@
     {
 
         List<string> _allWords;
-        public readonly string _wordOfTheDay;
+        public string _wordOfTheDay;
+
+        public int guessCount = 0;
+        public int guessLimit = 4;
+        public bool outOfGuesses = false;
+        public bool hasGuessedCorrectly = false;
 
 
         public WordleController()
@@ -35,6 +40,34 @@
                 }
             }
             return false;
+        }
+
+        public void MakeAGuess(string guessWord)
+        {
+            var isAWord = IsAWord(guessWord);
+            Console.WriteLine("You have guessed " + guessWord);
+
+            if (isAWord == false)
+            {
+                Console.WriteLine("That is not a valid word");
+            }
+            else
+            {
+                guessCount++;
+                outOfGuesses = (guessCount >= guessLimit);
+            }
+
+
+            if (IsGuessEqualToWordOfTheDay(guessWord, _wordOfTheDay))
+            {
+                Console.WriteLine("Winner Winner Chicken Dinner!!");
+                hasGuessedCorrectly = true;
+            }
+            else
+            {
+                Console.WriteLine("You have " + (guessLimit - guessCount) + " guesses remaining!");
+            }
+
         }
 
         public bool IsGuessEqualToWordOfTheDay(string guess, string wordOfTheDay)
